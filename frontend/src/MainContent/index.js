@@ -1,4 +1,4 @@
-import { Button, Card, Input, Layout } from 'antd';
+import { Button, Card, Input, Layout,Image } from 'antd';
 import React, { useState } from 'react';
 import './index.css';
 
@@ -7,7 +7,7 @@ const MainContent = () => {
 	const [results, setResults] = useState(null);
 	const searchItem = (e) => {
 		const val = e.target.value;
-		if (val && val.length >= 3) {
+		if (val && val.length) {
 			if (!searchView) setSearchView(true);
 			const requestOptions = {
 				method: 'GET',
@@ -36,10 +36,11 @@ const MainContent = () => {
 							
 							title={item.headline}
 						>
+							<Image  src={item.imageUrl} alt="img"/>
 							<h2>{item.primaryText}</h2>
 							<p>{item.description}</p>
 							<Button
-							onClick={()=>window.open(item.imageUrl)}
+							onClick={()=>window.open(item.url)}
 								type='primary'
 								block
 								style={{ height: '50px', borderRadius: '8px' }}
